@@ -1,0 +1,50 @@
+export type SNSPlatform = 'x' | 'instagram' | 'line' | 'youtube'
+export type PostFormat = 'thread' | 'image' | 'reel' | 'carousel' | 'feed' | 'story'
+export type PostStatus = 'scheduled' | 'draft'
+export type BadgeType = 'success' | 'error' | 'neutral'
+export type TabType = 'home' | 'analytics' | 'schedule' | 'settings'
+export type SNSTabType = SNSPlatform | 'all'
+
+export interface FollowerDataPoint {
+  date: string
+  count: number
+}
+
+export interface PostStats {
+  likes: number
+  comments: number
+  shares: number
+  views?: number
+  saves?: number
+  openRate?: number
+  retention?: number
+}
+
+export interface Post {
+  id: string
+  platform: SNSPlatform
+  format: PostFormat
+  content: string
+  stats: PostStats
+  postedAt: string
+  hashtags: string[]
+}
+
+export interface ScheduledPost {
+  id: string
+  platform: SNSPlatform
+  format: PostFormat
+  status: PostStatus
+  scheduledAt: string
+  content: string
+  hashtags: string[]
+}
+
+export interface SNSAccount {
+  platform: SNSPlatform
+  followers: number
+  followerChange: number
+  followerChangeRate: number
+  posts: Post[]
+  followerHistory: FollowerDataPoint[]
+}
