@@ -1,0 +1,13 @@
+# Frontend
+frontend/node_modules/
+
+# Production secrets
+.env.prod
+.env.*.prod
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker local overrides
+docker-compose.override.yml
