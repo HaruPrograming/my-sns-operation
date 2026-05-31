@@ -1,9 +1,13 @@
 # Frontend
 frontend/node_modules/
+node_modules/
 
 # Production secrets
 .env.prod
 .env.*.prod
+
+# Editor
+.vscode/
 
 # OS
 .DS_Store
