@@ -1,4 +1,5 @@
 export type SNSPlatform = 'x' | 'instagram' | 'line' | 'youtube'
+export type AnalyticsPeriod = '週' | '月' | '3ヶ月'
 export type PostFormat = 'thread' | 'image' | 'reel' | 'carousel' | 'feed' | 'story'
 export type PostStatus = 'scheduled' | 'draft'
 export type BadgeType = 'success' | 'error' | 'neutral'
@@ -51,6 +52,21 @@ export interface OperationSummary {
   items: SummaryItem[]
 }
 
+export interface AnalyticsChartPoint {
+  date: string
+  x: number
+  instagram: number
+  line: number
+  youtube: number
+}
+
+export interface BestPost {
+  platform: SNSPlatform
+  content: string
+  likes: number
+  views: number
+}
+
 export interface SNSAccount {
   platform: SNSPlatform
   accountName: string
@@ -62,4 +78,5 @@ export interface SNSAccount {
   posts: Post[]
   followerHistory: FollowerDataPoint[]
   operationSummary: OperationSummary
+  analyticsMetrics: { label: string; value: string }[]
 }

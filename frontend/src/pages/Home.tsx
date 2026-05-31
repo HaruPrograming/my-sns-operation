@@ -1,12 +1,5 @@
 import { Link } from 'react-router-dom'
-import { snsAccounts } from '../data'
-
-const platformLabels: Record<string, string> = {
-  x: 'X',
-  instagram: 'Instagram',
-  line: 'LINE',
-  youtube: 'YouTube',
-}
+import { snsAccounts, platformLabels } from '../data'
 
 const hint =
   'Xはハッシュタグを2〜3個使うと拡散しやすいです。Instagramはリールが最もリーチを伸ばしやすい形式です。'
