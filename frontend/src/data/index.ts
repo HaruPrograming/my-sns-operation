@@ -34,6 +34,15 @@ export const snsAccounts: SNSAccount[] = [
       { date: '2025-05', count: 12380 },
       { date: '2025-06', count: 12500 },
     ],
+    operationSummary: {
+      title: '今週の運用サマリー',
+      items: [
+        { label: '今週の投稿数', value: '3 / 5' },
+        { label: '返信率', value: '82%', highlight: true },
+        { label: 'ベストな時間帯', value: '19〜21時' },
+        { label: '伸びたフォーマット', value: 'スレッド' },
+      ],
+    },
   },
   {
     platform: 'instagram',
@@ -68,6 +77,15 @@ export const snsAccounts: SNSAccount[] = [
       { date: '2025-05', count: 8815 },
       { date: '2025-06', count: 8900 },
     ],
+    operationSummary: {
+      title: '今週の運用サマリー',
+      items: [
+        { label: '今週の投稿数', value: '4 / 5' },
+        { label: '保存率', value: '21%', highlight: true },
+        { label: 'ベストな時間帯', value: '12〜14時' },
+        { label: '伸びたフォーマット', value: 'リール' },
+      ],
+    },
   },
   {
     platform: 'line',
@@ -102,6 +120,15 @@ export const snsAccounts: SNSAccount[] = [
       { date: '2025-05', count: 3155 },
       { date: '2025-06', count: 3200 },
     ],
+    operationSummary: {
+      title: '今週の配信サマリー',
+      items: [
+        { label: '今週の配信数', value: '2 / 3' },
+        { label: '開封率', value: '68%', highlight: true },
+        { label: 'ベストな時間帯', value: '18〜20時' },
+        { label: '伸びたフォーマット', value: 'テキスト' },
+      ],
+    },
   },
   {
     platform: 'youtube',
@@ -136,5 +163,14 @@ export const snsAccounts: SNSAccount[] = [
       { date: '2025-05', count: 5390 },
       { date: '2025-06', count: 5600 },
     ],
+    operationSummary: {
+      title: '今週の運用サマリー',
+      items: [
+        { label: '今週の投稿数', value: '1 / 2' },
+        { label: '平均視聴維持率', value: '62%', highlight: true },
+        { label: 'ベストな投稿時間', value: '金曜18時' },
+        { label: '伸びたフォーマット', value: '解説動画' },
+      ],
+    },
   },
 ]
