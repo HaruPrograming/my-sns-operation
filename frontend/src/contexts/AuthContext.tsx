@@ -3,10 +3,10 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? '/api';
 
 type User = {
-  id: number;
   name: string;
   email: string;
   avatar: string | null;
+  x_connected: boolean;
 };
 
 type AuthContextType = {
@@ -15,7 +15,7 @@ type AuthContextType = {
   logout: () => Promise<void>;
 };
 
-const AuthContext = createContext<AuthContextType | null>(null);
+export const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);

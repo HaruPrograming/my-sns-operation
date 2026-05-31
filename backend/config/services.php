@@ -41,4 +41,10 @@ return [
         'redirect'      => env('GOOGLE_REDIRECT_URI', 'http://localhost:8000/api/auth/google/callback'),
     ],
 
+    'twitter-oauth-2' => [
+        'client_id'     => env('X_CLIENT_ID'),
+        'client_secret' => env('X_CLIENT_SECRET'),
+        'redirect'      => env('X_REDIRECT_URI', 'http://127.0.0.1:8000/api/auth/x/callback'),
+    ],
+
 ];
