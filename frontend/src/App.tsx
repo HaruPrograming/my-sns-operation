@@ -60,7 +60,9 @@ function AuthenticatedApp({ user, onLogout }: AuthenticatedAppProps) {
             </button>
           </div>
         </header>
-        <SNSTabBar activeTab={activeTab} onTabChange={handleSNSTabChange} />
+        {activeBottomTab === 'home' && (
+          <SNSTabBar activeTab={activeTab} onTabChange={handleSNSTabChange} />
+        )}
       </div>
       <main className="pb-16">
         <Routes>
