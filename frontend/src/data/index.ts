@@ -1,4 +1,18 @@
-import type { SNSAccount } from '../types'
+import type { SNSAccount, SNSPlatform, AnalyticsPeriod, AnalyticsChartPoint, BestPost } from '../types'
+
+export const platformColors: Record<SNSPlatform, string> = {
+  x: '#1A1A1A',
+  instagram: '#DD2A7B',
+  line: '#06C755',
+  youtube: '#FF0000',
+}
+
+export const platformLabels: Record<SNSPlatform, string> = {
+  x: 'X',
+  instagram: 'Instagram',
+  line: 'LINE',
+  youtube: 'YouTube',
+}
 
 export const snsAccounts: SNSAccount[] = [
   {
@@ -43,6 +57,11 @@ export const snsAccounts: SNSAccount[] = [
         { label: '伸びたフォーマット', value: 'スレッド' },
       ],
     },
+    analyticsMetrics: [
+      { label: '今月の投稿数', value: '12件' },
+      { label: '平均いいね', value: '1,045' },
+      { label: '返信率', value: '7.4%' },
+    ],
   },
   {
     platform: 'instagram',
@@ -86,6 +105,11 @@ export const snsAccounts: SNSAccount[] = [
         { label: '伸びたフォーマット', value: 'リール' },
       ],
     },
+    analyticsMetrics: [
+      { label: '今月の投稿数', value: '8件' },
+      { label: '平均いいね', value: '1,540' },
+      { label: '保存率', value: '21%' },
+    ],
   },
   {
     platform: 'line',
@@ -129,6 +153,11 @@ export const snsAccounts: SNSAccount[] = [
         { label: '伸びたフォーマット', value: 'テキスト' },
       ],
     },
+    analyticsMetrics: [
+      { label: '今月の配信数', value: '5件' },
+      { label: '平均開封率', value: '68%' },
+      { label: 'クリック率', value: '12%' },
+    ],
   },
   {
     platform: 'youtube',
@@ -172,5 +201,40 @@ export const snsAccounts: SNSAccount[] = [
         { label: '伸びたフォーマット', value: '解説動画' },
       ],
     },
+    analyticsMetrics: [
+      { label: '今月の投稿数', value: '3件' },
+      { label: '平均視聴数', value: '26,333' },
+      { label: '平均維持率', value: '59%' },
+    ],
   },
+]
+
+export const analyticsChartData: Record<AnalyticsPeriod, AnalyticsChartPoint[]> = {
+  週: [
+    { date: '6/9',  x: 12350, instagram: 8820, line: 3170, youtube: 5480 },
+    { date: '6/10', x: 12370, instagram: 8840, line: 3175, youtube: 5500 },
+    { date: '6/11', x: 12380, instagram: 8850, line: 3180, youtube: 5520 },
+    { date: '6/12', x: 12410, instagram: 8860, line: 3185, youtube: 5550 },
+    { date: '6/13', x: 12440, instagram: 8870, line: 3190, youtube: 5570 },
+    { date: '6/14', x: 12470, instagram: 8885, line: 3195, youtube: 5590 },
+    { date: '6/15', x: 12500, instagram: 8900, line: 3200, youtube: 5600 },
+  ],
+  月: [
+    { date: '5/19', x: 12200, instagram: 8700, line: 3120, youtube: 5200 },
+    { date: '5/26', x: 12300, instagram: 8780, line: 3150, youtube: 5350 },
+    { date: '6/2',  x: 12380, instagram: 8830, line: 3170, youtube: 5470 },
+    { date: '6/9',  x: 12440, instagram: 8870, line: 3190, youtube: 5550 },
+    { date: '6/15', x: 12500, instagram: 8900, line: 3200, youtube: 5600 },
+  ],
+  '3ヶ月': [
+    { date: '4月', x: 12100, instagram: 8650, line: 3100, youtube: 5100 },
+    { date: '5月', x: 12380, instagram: 8815, line: 3155, youtube: 5390 },
+    { date: '6月', x: 12500, instagram: 8900, line: 3200, youtube: 5600 },
+  ],
+}
+
+export const analyticsBestPosts: BestPost[] = [
+  { platform: 'x', content: 'Xのアルゴリズム変更について徹底解説スレッド', likes: 1200, views: 45000 },
+  { platform: 'instagram', content: '朝のルーティン動画：生産性を上げる5つの習慣', likes: 2100, views: 18000 },
+  { platform: 'youtube', content: '【完全版】SNS運用で月100万円を稼ぐ方法', likes: 3400, views: 48000 },
 ]

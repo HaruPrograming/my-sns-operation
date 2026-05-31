@@ -1,22 +1,8 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import FollowerChart from '../components/FollowerChart'
-import { snsAccounts } from '../data'
+import { snsAccounts, platformColors } from '../data'
 import type { SNSPlatform } from '../types'
-
-const platformLabels: Record<SNSPlatform, string> = {
-  x: 'X',
-  instagram: 'Instagram',
-  line: 'LINE',
-  youtube: 'YouTube',
-}
-
-const platformColors: Record<SNSPlatform, string> = {
-  x: '#1A1A1A',
-  instagram: '#DD2A7B',
-  line: '#06C755',
-  youtube: '#FF0000',
-}
 
 type SortKey = 'popular' | 'newest'
 

@@ -4,7 +4,9 @@ import LoginPage from './components/LoginPage'
 import SNSTabBar from './components/SNSTabBar'
 import Home from './pages/Home'
 import SNSDetail from './pages/SNSDetail'
-import type { SNSTabType } from './types'
+import Analytics from './pages/Analytics'
+import TabBar from './components/TabBar'
+import type { SNSTabType, TabType } from './types'
 
 interface AuthenticatedAppProps {
   user: { name: string; avatar?: string }
@@ -23,8 +25,19 @@ function AuthenticatedApp({ user, onLogout }: AuthenticatedAppProps) {
     return 'all'
   })()
 
+  const activeBottomTab: TabType = (() => {
+    if (location.pathname === '/analytics') return 'analytics'
+    if (location.pathname === '/schedule') return 'schedule'
+    if (location.pathname === '/settings') return 'settings'
+    return 'home'
+  })()
+
   const handleSNSTabChange = (tab: SNSTabType) => {
     navigate(tab === 'all' ? '/' : `/${tab}`)
+  }
+
+  const handleBottomTabChange = (tab: TabType) => {
+    navigate(tab === 'home' ? '/' : `/${tab}`)
   }
 
   return (
@@ -45,15 +58,19 @@ function AuthenticatedApp({ user, onLogout }: AuthenticatedAppProps) {
         </div>
       </header>
       <SNSTabBar activeTab={activeTab} onTabChange={handleSNSTabChange} />
-      <main>
+      <main className="pb-16">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/x" element={<SNSDetail />} />
           <Route path="/instagram" element={<SNSDetail />} />
           <Route path="/line" element={<SNSDetail />} />
           <Route path="/youtube" element={<SNSDetail />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/schedule" element={<div className="p-8 text-center text-gray-400">投稿予定（準備中）</div>} />
+          <Route path="/settings" element={<div className="p-8 text-center text-gray-400">設定（準備中）</div>} />
         </Routes>
       </main>
+      <TabBar activeTab={activeBottomTab} onTabChange={handleBottomTabChange} />
     </div>
   )
 }
@@ -73,7 +90,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <AuthenticatedApp user={user} onLogout={logout} />
+      <AuthenticatedApp user={{ ...user, avatar: user.avatar ?? undefined }} onLogout={logout} />
     </BrowserRouter>
   )
 }
