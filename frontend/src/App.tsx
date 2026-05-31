@@ -5,6 +5,7 @@ import SNSTabBar from './components/SNSTabBar'
 import Home from './pages/Home'
 import SNSDetail from './pages/SNSDetail'
 import Analytics from './pages/Analytics'
+import Schedule from './pages/Schedule'
 import TabBar from './components/TabBar'
 import type { SNSTabType, TabType } from './types'
 
@@ -66,7 +67,7 @@ function AuthenticatedApp({ user, onLogout }: AuthenticatedAppProps) {
           <Route path="/line" element={<SNSDetail />} />
           <Route path="/youtube" element={<SNSDetail />} />
           <Route path="/analytics" element={<Analytics />} />
-          <Route path="/schedule" element={<div className="p-8 text-center text-gray-400">投稿予定（準備中）</div>} />
+          <Route path="/schedule" element={<Schedule />} />
           <Route path="/settings" element={<div className="p-8 text-center text-gray-400">設定（準備中）</div>} />
         </Routes>
       </main>

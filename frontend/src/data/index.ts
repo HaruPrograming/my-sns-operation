@@ -1,4 +1,4 @@
-import type { SNSAccount, SNSPlatform, AnalyticsPeriod, AnalyticsChartPoint, BestPost } from '../types'
+import type { SNSAccount, SNSPlatform, AnalyticsPeriod, AnalyticsChartPoint, BestPost, ScheduledPost } from '../types'
 
 export const platformColors: Record<SNSPlatform, string> = {
   x: '#1A1A1A',
@@ -237,4 +237,43 @@ export const analyticsBestPosts: BestPost[] = [
   { platform: 'x', content: 'Xのアルゴリズム変更について徹底解説スレッド', likes: 1200, views: 45000 },
   { platform: 'instagram', content: '朝のルーティン動画：生産性を上げる5つの習慣', likes: 2100, views: 18000 },
   { platform: 'youtube', content: '【完全版】SNS運用で月100万円を稼ぐ方法', likes: 3400, views: 48000 },
+]
+
+export const scheduledPosts: ScheduledPost[] = [
+  {
+    id: 'sp-1',
+    platform: 'x',
+    format: 'thread',
+    status: 'scheduled',
+    scheduledAt: '2026-05-10T19:00:00',
+    content: 'Xアルゴリズムの最新情報をまとめたスレッドを投稿予定',
+    hashtags: ['X', 'SNS運用'],
+  },
+  {
+    id: 'sp-2',
+    platform: 'instagram',
+    format: 'reel',
+    status: 'scheduled',
+    scheduledAt: '2026-05-15T12:00:00',
+    content: '生産性を上げる朝のルーティン動画',
+    hashtags: ['朝活', '生産性'],
+  },
+  {
+    id: 'sp-3',
+    platform: 'youtube',
+    format: 'image',
+    status: 'draft',
+    scheduledAt: '2026-05-20T18:00:00',
+    content: '【完全版】SNS運用戦略2026年版',
+    hashtags: ['SNS', 'YouTube'],
+  },
+  {
+    id: 'sp-4',
+    platform: 'line',
+    format: 'image',
+    status: 'scheduled',
+    scheduledAt: '2026-05-25T18:00:00',
+    content: '【週刊SNSレポート】今週のトレンドまとめ',
+    hashtags: [],
+  },
 ]
