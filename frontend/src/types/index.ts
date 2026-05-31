@@ -42,9 +42,12 @@ export interface ScheduledPost {
 
 export interface SNSAccount {
   platform: SNSPlatform
+  accountName: string
+  profileUrl: string
   followers: number
   followerChange: number
   followerChangeRate: number
+  impressions: number
   posts: Post[]
   followerHistory: FollowerDataPoint[]
 }
