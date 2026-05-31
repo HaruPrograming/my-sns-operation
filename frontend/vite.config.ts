@@ -22,7 +22,6 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./src/test-setup.ts'],
-    pool: 'forks',
-    forkTimeout: 120000,
+    pool: 'vmThreads',
   },
 })
