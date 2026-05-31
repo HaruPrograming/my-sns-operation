@@ -3,6 +3,7 @@ import { useAuth } from './contexts/AuthContext'
 import LoginPage from './components/LoginPage'
 import SNSTabBar from './components/SNSTabBar'
 import Home from './pages/Home'
+import SNSDetail from './pages/SNSDetail'
 import type { SNSTabType } from './types'
 
 interface AuthenticatedAppProps {
@@ -47,6 +48,10 @@ function AuthenticatedApp({ user, onLogout }: AuthenticatedAppProps) {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/x" element={<SNSDetail />} />
+          <Route path="/instagram" element={<SNSDetail />} />
+          <Route path="/line" element={<SNSDetail />} />
+          <Route path="/youtube" element={<SNSDetail />} />
         </Routes>
       </main>
     </div>

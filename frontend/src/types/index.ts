@@ -40,6 +40,17 @@ export interface ScheduledPost {
   hashtags: string[]
 }
 
+export interface SummaryItem {
+  label: string
+  value: string
+  highlight?: boolean
+}
+
+export interface OperationSummary {
+  title: string
+  items: SummaryItem[]
+}
+
 export interface SNSAccount {
   platform: SNSPlatform
   accountName: string
@@ -50,4 +61,5 @@ export interface SNSAccount {
   impressions: number
   posts: Post[]
   followerHistory: FollowerDataPoint[]
+  operationSummary: OperationSummary
 }
