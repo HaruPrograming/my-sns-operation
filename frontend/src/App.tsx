@@ -1,18 +1,30 @@
-import { useAuth } from './contexts/AuthContext';
-import LoginPage from './components/LoginPage';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from './contexts/AuthContext'
+import LoginPage from './components/LoginPage'
+import SNSTabBar from './components/SNSTabBar'
+import Home from './pages/Home'
+import type { SNSTabType } from './types'
 
-function App() {
-  const { user, loading, logout } = useAuth();
+interface AuthenticatedAppProps {
+  user: { name: string; avatar?: string }
+  onLogout: () => void
+}
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-400">読み込み中...</p>
-      </div>
-    );
+function AuthenticatedApp({ user, onLogout }: AuthenticatedAppProps) {
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const activeTab: SNSTabType = (() => {
+    if (location.pathname === '/x') return 'x'
+    if (location.pathname === '/instagram') return 'instagram'
+    if (location.pathname === '/line') return 'line'
+    if (location.pathname === '/youtube') return 'youtube'
+    return 'all'
+  })()
+
+  const handleSNSTabChange = (tab: SNSTabType) => {
+    navigate(tab === 'all' ? '/' : `/${tab}`)
   }
-
-  if (!user) return <LoginPage />;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -24,18 +36,41 @@ function App() {
           )}
           <span className="text-sm text-gray-600">{user.name}</span>
           <button
-            onClick={logout}
+            onClick={onLogout}
             className="text-sm text-gray-400 hover:text-gray-600 transition"
           >
             ログアウト
           </button>
         </div>
       </header>
-      <main className="max-w-lg mx-auto px-4 py-8">
-        <p className="text-center text-gray-400">ここにコンテンツが入ります</p>
+      <SNSTabBar activeTab={activeTab} onTabChange={handleSNSTabChange} />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
       </main>
     </div>
-  );
+  )
 }
 
-export default App;
+function App() {
+  const { user, loading, logout } = useAuth()
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-400">読み込み中...</p>
+      </div>
+    )
+  }
+
+  if (!user) return <LoginPage />
+
+  return (
+    <BrowserRouter>
+      <AuthenticatedApp user={user} onLogout={logout} />
+    </BrowserRouter>
+  )
+}
+
+export default App
