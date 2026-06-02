@@ -10,7 +10,7 @@ type ConnectionStatus = Record<SNSPlatform, boolean>
 type GoalRecord = Record<SNSPlatform, number>
 
 export default function Settings() {
-  const { user } = useAuth()
+  const { user, xProfile } = useAuth()
   const location = useLocation()
 
   const [notifications, setNotifications] = useState<Record<SNSPlatform, boolean>>({
@@ -37,6 +37,7 @@ export default function Settings() {
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     if (params.get('x_connected') === '1') {
+      setConnected(prev => ({ ...prev, x: true }))
       setSuccessMessage('X との連携が完了しました')
       setTimeout(() => setSuccessMessage(null), 4000)
     }
@@ -48,6 +49,11 @@ export default function Settings() {
 
   const handleConnect = (platform: SNSPlatform) => {
     if (platform === 'x') {
+      // Cancel any pending Google FedCM credential request before navigating to X OAuth
+      // (browser only allows one navigator.credentials.get() at a time)
+      try {
+        (window as any).google?.accounts?.id?.cancel()
+      } catch (_) {}
       window.location.href = '/api/auth/x'
       return
     }
@@ -87,7 +93,26 @@ export default function Settings() {
               onClick={() => setModalPlatform(platform)}
               className="w-full flex items-center justify-between px-4 py-3 text-left"
             >
-              <span className="text-sm text-gray-800">{platformLabels[platform]}</span>
+              <div className="flex items-center gap-3">
+                {platform === 'x' && connected.x && xProfile?.avatar && (
+                  <img
+                    src={xProfile.avatar}
+                    alt="X avatar"
+                    className="w-8 h-8 rounded-full"
+                  />
+                )}
+                <div>
+                  <span className="text-sm text-gray-800">{platformLabels[platform]}</span>
+                  {platform === 'x' && connected.x && xProfile?.username && (
+                    <p className="text-xs text-gray-400">
+                      @{xProfile.username}
+                      {xProfile.followers !== undefined && (
+                        <> · {xProfile.followers.toLocaleString()} フォロワー</>
+                      )}
+                    </p>
+                  )}
+                </div>
+              </div>
               <span
                 className={`text-xs font-medium px-2 py-0.5 rounded-full ${
                   connected[platform]
