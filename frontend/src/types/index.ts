@@ -67,6 +67,16 @@ export interface BestPost {
   views: number
 }
 
+export interface XTweet {
+  id: string
+  content: string
+  posted_at: string
+  likes: number
+  retweets: number
+  replies: number
+  quotes: number
+}
+
 export interface SNSAccount {
   platform: SNSPlatform
   accountName: string
